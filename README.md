@@ -23,5 +23,5 @@ OPTIONS:
 ```
 
 ## Where is the package
-`out/webrtcbuilds-<rev>-<sha>-<plat>.zip`
-where `<rev>` is the revision number of the commit, `<sha>` is the short git SHA of the commit, and `<plat>` is the platform (linux64, windows, osx).
+* `out/webrtcbuilds-<rev>-<sha>-<plat>.zip` where `<rev>` is the revision number of the commit, `<sha>` is the short git SHA of the commit, and `<plat>` is the platform (linux64, windows, osx).
+* It will also install the package in `/opt/webrtc`
