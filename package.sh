@@ -122,6 +122,16 @@ if [ $UNAME = "Linux" ]; then
   mkdir -p $BUILDLABEL/lib/Debug/pkgconfig $BUILDLABEL/lib/Release/pkgconfig
   $CP $DIR/resources/pkgconfig/libwebrtc_full-debug.pc $BUILDLABEL/lib/Debug/pkgconfig/libwebrtc_full.pc
   $CP $DIR/resources/pkgconfig/libwebrtc_full-release.pc $BUILDLABEL/lib/Release/pkgconfig/libwebrtc_full.pc
+
+  # install build to /opt/webrtc
+  INSTALL_TARGET="/opt/webrtc"  
+  sudo mkdir -p $INSTALL_TARGET
+  sudo chown -R $UID $INSTALL_TARGET
+  $CP -r $BUILDLABEL/* $INSTALL_TARGET/
+
+  # handle the pc file
+  sed -i "s|\$WEBRTCBUILDS_PATH|$BUILDLABEL|" $BUILDLABEL/lib/Debug/pkgconfig/libwebrtc_full.pc $BUILDLABEL/lib/Release/pkgconfig/libwebrtc_full.pc
+  sed -i "s|\$WEBRTCBUILDS_PATH|$INSTALL_TARGET|" $INSTALL_TARGET/lib/Debug/pkgconfig/libwebrtc_full.pc $INSTALL_TARGET/lib/Release/pkgconfig/libwebrtc_full.pc
 fi
 
 # zip up the package
